@@ -9,8 +9,16 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const AddMovieHandler = (movie) => {
-    console.log(movie);
+  const AddMovieHandler = async (movie) => {
+    const response = await fetch("URL", {
+      method: 'POST',
+      body: JSON.stringify(movie),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log(data);
   }
 
   const fetchMoviesHandler = useCallback(async () => {
